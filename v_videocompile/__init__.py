@@ -14,8 +14,7 @@ import subprocess
 import platform
 import shutil
 
-from os.path import expanduser
-home = expanduser("~")
+home = '/usr/local/src/'
 
 
 class InstallError(Exception):
@@ -31,7 +30,7 @@ class VideoCompile(object):
 
         self.debug = kwargs.get('debug', True)
         self.compile_dir = kwargs.get(
-            'compile_dir', 
+            'compile_dir',
                 os.path.join(
                 home,
                 'ffmpeg_sources'
@@ -103,10 +102,10 @@ class VideoCompile(object):
         (submerged process)
         """
         process = subprocess.Popen(
-            'ffmpeg', 
-            stdout=subprocess.PIPE, 
-            stderr=subprocess.STDOUT, 
-            shell=True, 
+            'ffmpeg',
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            shell=True,
             universal_newlines=True
             )
 
@@ -165,12 +164,12 @@ class VideoCompile(object):
     def darwin_prep(self):
         """
         NOTE: I couldn't get this to work with anything other
-        than brew -- in the interests of getting to done, and as 
+        than brew -- in the interests of getting to done, and as
         one probably shouldn't be running this on a darwin machine
         in production, I left it.
 
         ALSO NOTE:
-        there's a brew command to install ffmpeg -- so feel free to 
+        there's a brew command to install ffmpeg -- so feel free to
         use that (it's in polite_buildout()):
 
             '''
@@ -185,7 +184,7 @@ class VideoCompile(object):
                 'ruby -e \"$(curl -fsSL \
                 https://raw.githubusercontent.com/Homebrew/install/master/install)\"'
             )
-                
+
         if x == 0:
             x = os.system(
                 'brew install -y automake yasm fdk-aac git lame\
@@ -246,10 +245,10 @@ class VideoCompile(object):
             submerged/oneline output
             """
             process = subprocess.Popen(
-                command, 
-                stdout=subprocess.PIPE, 
-                stderr=subprocess.STDOUT, 
-                shell=True, 
+                command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                shell=True,
                 universal_newlines=True
                 )
 
@@ -270,7 +269,7 @@ class VideoCompile(object):
 
     def polite_buildout(self):
         """
-        This should act as a temporary failsafe. 
+        This should act as a temporary failsafe.
         I don't love the dependencies here, but this will get the node up
         :::
         """
